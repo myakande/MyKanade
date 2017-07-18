@@ -1,5 +1,5 @@
 # MyKanade
-##react学习笔记      
+## react学习笔记      
 ### JSX
 {js表达式}
 `<div tabIndex="xxx"></div>;` 引号定义字符串属性
