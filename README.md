@@ -12,92 +12,92 @@ JSX可以嵌套，**最外层一个根节点，小驼峰命名法**
 类中使用，局部状态、生命周期钩子
 ### 事件处理
 `<button onClick={activateLasers}>`属性不是字符串而是{函数}
+```javascript
+class Toggle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {isToggleOn: true};
 
-    class Toggle extends React.Component {
-      constructor(props) {
-        super(props);
-        this.state = {isToggleOn: true};
+    // This binding is necessary to make `this` work in the callback
+    this.handleClick = this.handleClick.bind(this);
+  }
 
-        // This binding is necessary to make `this` work in the callback
-        this.handleClick = this.handleClick.bind(this);
-      }
+  handleClick() {
+    this.setState(prevState => ({
+     isToggleOn: !prevState.isToggleOn
+    }));
+  }
 
-      handleClick() {
-        this.setState(prevState => ({
-         isToggleOn: !prevState.isToggleOn
-        }));
-      }
-
-      render() {
-        return (
-          <button onClick={this.handleClick}>
-            {this.state.isToggleOn ? 'ON' : 'OFF'}
-          </button>
-        );
-      }
-    }
-
-    ReactDOM.render(
-      <Toggle />,
-      document.getElementById('root')
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.isToggleOn ? 'ON' : 'OFF'}
+      </button>
     );
+  }
+}
 
+ReactDOM.render(
+  <Toggle />,
+  document.getElementById('root')
+);
+```
 ### 列表
+```javascript
+function NumberList(props) {
+  const numbers = props.numbers;
+  const listItems = numbers.map((number) =>
+    <li key={number.toString()}>
+      {number}
+    </li>
+  );
+  return (
+    <ul>{listItems}</ul>
+  );
+}
 
-    function NumberList(props) {
-      const numbers = props.numbers;
-      const listItems = numbers.map((number) =>
-        <li key={number.toString()}>
-          {number}
-        </li>
-      );
-      return (
-        <ul>{listItems}</ul>
-      );
-    }
-
-    const numbers = [1, 2, 3, 4, 5];
-    ReactDOM.render(
-      <NumberList numbers={numbers} />,
-      document.getElementById('root')
-    );
-
+const numbers = [1, 2, 3, 4, 5];
+ReactDOM.render(
+  <NumberList numbers={numbers} />,
+  document.getElementById('root')
+);
+```
 Keys可以在DOM中的某些元素被增加或删除的时候帮助React识别哪些元素发生了变化。
 
 ### 表单
->受控组件
+**受控组件**
+```javascript
+class NameForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
 
-    class NameForm extends React.Component {
-      constructor(props) {
-        super(props);
-        this.state = {value: ''};
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit =   this.handleSubmit.bind(this);
+  }
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit =   this.handleSubmit.bind(this);
-      }
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
 
-      handleChange(event) {
-        this.setState({value: event.target.value});
-      }
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.value);
+    event.preventDefault();
+  }
 
-      handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
-        event.preventDefault();
-      }
-
-      render() {
-        return (
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Name:
-              <input type="text" value={this.state.value} onChange={this.handleChange} />
-            </label>
-            <input type="submit" value="Submit" />
-            </form>
-        );
-      }
-    }
-
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+        </form>
+    );
+  }
+}
+```
 由于 value 属性是在我们的表单元素上设置的，因此显示的值将始终为 React数据源上this.state.value 的值。由于每次按键都会触发 handleChange 来更新当前React的state，所展示的值也会随着不同用户的输入而更新。
 
 ### 状态提升
