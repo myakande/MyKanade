@@ -1,8 +1,8 @@
 ## MyKanade的react学习笔记      
 ### JSX
-{js表达式}
-`<div tabIndex="xxx"></div>;` 引号定义字符串属性
-`<img src={xxx}></img>;` 大括号定义js表达式属性 外面不能有引号
+{js表达式}  
+`<div tabIndex="xxx"></div>;` 引号定义字符串属性  
+`<img src={xxx}></img>;` 大括号定义js表达式属性 外面不能有引号  
 JSX可以嵌套，**最外层一个根节点，小驼峰命名法**
 ### 元素
 元素不可变，更新界面的**唯一**办法是创建一个新的元素，然后将它传入 `ReactDOM.render()`，类似动画帧
