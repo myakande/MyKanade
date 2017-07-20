@@ -1,20 +1,57 @@
-[toc]
-#  dva知识地图整理  
+# dva知识地图整理
 >由sorrycc/dva-knowledgemap、阮一峰/ECMAScript 6 入门整理修改  
 
+* [JavaScript 语言](#javascript-语言 )
+	* [变量声明](#变量声明 )
+			* [const和let](#const和let )
+			* [模板字符串](#模板字符串 )
+			* [默认参数](#默认参数 )
+	* [箭头函数](#箭头函数 )
+	* [模块的 Import 和 Export](#模块的-import-和-export )
+	* [ES6 对象和数组](#es6-对象和数组 )
+			* [析构赋值](#析构赋值 )
+			* [对象字面量改进](#对象字面量改进 )
+			* [Spread Operator（...）](#spread-operator )
+	* [Promises](#promises )
+	* [Generators](#generators )
+* [React Component](#react-component )
+	* [Stateless Functional Components](#stateless-functional-components )
+	* [JSX](#jsx )
+			* [Spread Attributes](#spread-attributes )
+	* [CSS Modules](#css-modules )
+			* [一张图理解](#一张图理解 )
+			* [定义全局 CSS](#定义全局-css )
+			* [classnames Package](#classnames-package )
+* [Model](#model )
+	* [namespace](#namespace )
+	* [state](#state )
+	* [reducers](#reducers )
+	* [effects](#effects )
+	* [subscriptions](#subscriptions )
+* [Router](#router )
+	* [react-route](#react-route )
+	* [Route Components](#route-components )
+			* [通过 connect 绑定数据](#通过-connect-绑定数据 )
+			* [基于 action 进行页面跳转](#基于-action-进行页面跳转 )
+* [history](#history )
+
 ## JavaScript 语言
+
 ### 变量声明
+
 ##### const和let
+
 const 和 let，分别表示常量和变量。  
 块级作用域，无变量提升。  
 ##### 模板字符串
+
 使用（\`）反引号标识，表示多行字符串时，所有的空格和缩进都会被保留，需要将变量名写在${}之中。
 ```javascript
-const user = 'world';
-console.log(`hello
-            ${user}`);
+const user = &#x27;world&#x27;;
+console.log(`hello"/>{user}`);
 ```
 ##### 默认参数
+
 ```javascript
 function logActivity(activity = 'skiing') {
   console.log(activity);
@@ -23,6 +60,7 @@ function logActivity(activity = 'skiing') {
 logActivity();  // skiing
 ```
 ### 箭头函数
+
 ```javascript
 var f = v => v;
 ```
@@ -34,6 +72,7 @@ var f = function(v) {
 ```
 函数体内的this对象，就是**定义时所在的对象**，而不是使用时所在的对象。
 ### 模块的 Import 和 Export
+
 ```javascript
 // 引入全部
 import dva from 'dva';
@@ -51,7 +90,9 @@ export default App;
 export class App extend Component {};
 ```
 ### ES6 对象和数组
+
 ##### 析构赋值
+
 析构赋值让我们从 Object 或 Array 里取部分数据存为变量。
 ```javascript
 // 对象
@@ -78,6 +119,7 @@ const add = (state, { payload: todo }) => {
 };
 ```
 ##### 对象字面量改进
+
 定义对象方法时，可以省去 function 关键字。
 ```javascript
 app.model({
@@ -90,6 +132,7 @@ app.model({
 });
 ```
 ##### Spread Operator（...）
+
 可用于组装数组。
 ```javascript
 const todos = ['Learn dva'];
@@ -144,6 +187,7 @@ const d = 4;
 const ret = { ...foo, ...bar, d };  // { a:1, b:3, c:2, d:4 }
 ```
 ### Promises
+
 Promise 用于更优雅地处理异步请求。比如发起异步请求：
 ```javascript
 fetch('/api/todos')
@@ -164,6 +208,7 @@ delay(1000).then(_ => {
 });
 ```
 ### Generators
+
 dva 的 effects 是通过 generator 组织的。Generator 返回的是迭代器，通过 yield 关键字实现暂停功能。
 ```javascript
 app.model({
@@ -177,7 +222,9 @@ app.model({
 });
 ```
 ## React Component
+
 ### Stateless Functional Components
+
 React Component 推荐尽量使用Stateless Functional Components，保持简洁和无状态。这是函数，不是 Object，没有 this 作用域，是 pure function。
 比如定义 App Component 。
 ```javascript
@@ -200,7 +247,9 @@ class App extends React.Componnet {
 }
 ```
 ### JSX
+
 ##### Spread Attributes
+
 比如：
 ```javascript
 const attrs = {
@@ -217,11 +266,14 @@ const attrs = {
 };
 <a href={attrs.href} target={attrs.target}>Hello</a>
 ```
-更多有关JSX参考[react学习记录-JSX](https://github.com/mykanade/MyKanade/blob/master/react.md#jsx)
+更多有关JSX参考[react学习记录-JSX](https://github.com/mykanade/MyKanade/blob/master/react.md#jsx )
 ### CSS Modules
+
 ##### 一张图理解
-![](https://camo.githubusercontent.com/d1341a45402a32a6112f7a99cd99341eab2abbad/68747470733a2f2f7a6f732e616c697061796f626a656374732e636f6d2f726d73706f7274616c2f535742775754625a4b7178774550712e706e67)
+
+![](https://camo.githubusercontent.com/d1341a45402a32a6112f7a99cd99341eab2abbad/68747470733a2f2f7a6f732e616c697061796f626a656374732e636f6d2f726d73706f7274616c2f535742775754625a4b7178774550712e706e67 )
 ##### 定义全局 CSS
+
 CSS Modules 默认是局部作用域的，想要声明一个全局规则，可用 :global 语法。
 
 比如：
@@ -239,6 +291,7 @@ CSS Modules 默认是局部作用域的，想要声明一个全局规则，可�
 <App className="title" />        // green
 ```
 ##### classnames Package
+
 在一些复杂的场景中，一个元素可能对应多个 className，而每个 className 又基于一些条件来决定是否出现。这时，classnames 这个库就非常有用。
 ```javascript
 import classnames from 'classnames';
@@ -257,6 +310,7 @@ const App = (props) => {
 <App type="edit" />   // btn btnSmall
 ```
 ## Model
+
 ```javascript
 app.model({
   namespace: 'todo',
@@ -288,13 +342,17 @@ app.model({
 ```
 model包含以下5个属性:
 ### namespace
+
 model 的命名空间，同时也是他在全局 state 上的属性，只能用字符串，不支持通过 . 的方式创建多层命名空间。
 ### state
+
 初始值，优先级低于传给 dva() 的 opts.initialState。
 ### reducers
+
 接受 state 和 action，返回老的或新的 state 。即：`(state, action) => state`  
 用于处理同步操作，唯一可以修改 state 的地方。由 action 触发。
 ### effects
+
 `*(action, effects) => void`  
 用于处理异步操作和业务逻辑，不直接修改 state。由 action 触发，可以触发 action，可以和服务器交互，可以获取全局 state 的数据等等。
 **put用于触发action**
@@ -310,14 +368,19 @@ const result = yield call(fetch, '/todos');
 const todos = yield select(state => state.todos);
 ```
 ### subscriptions
+
 `({ dispatch, history }, done) => unlistenFunction`
 subscriptions 是订阅，用于订阅一个数据源，然后根据需要 dispatch 相应的 action。数据源可以是当前的时间、服务器的 websocket 连接、keyboard 输入、geolocation 变化、history 路由变化等等。
 ## Router
+
 ### react-route
-参考[react学习记录-Route](https://github.com/mykanade/MyKanade/blob/master/react.md#route)
+
+参考[react学习记录-Route](https://github.com/mykanade/MyKanade/blob/master/react.md#route )
 ### Route Components
+
 Route Components 是指 `./src/routes/` 目录下的文件，他们是 `./src/router.js` 里匹配的 Component。
 ##### 通过 connect 绑定数据
+
 比如：
 ```javascript
 import { connect } from 'dva';
@@ -332,6 +395,7 @@ export default connect(mapStateToProps)(App);
 ```
 然后在 App 里就有了 `dispatch` 和 `users` 两个属性。
 ##### 基于 action 进行页面跳转
+
 ```javascript
 import { routerRedux } from 'dva/router';
 
@@ -350,6 +414,7 @@ routerRedux.push({
 });
 ```
 ## history
+
 切换 history 为 browserHistory
 ```javascript
 import { browserHistory } from 'dva/router';
@@ -365,4 +430,4 @@ const app = dva({
   history: useRouterHistory(createHashHistory)({ queryKey: false }),
 });
 ```
-更多可参考[react学习记录-history](https://github.com/mykanade/MyKanade/blob/master/react.md#route)
+更多可参考[react学习记录-history](https://github.com/mykanade/MyKanade/blob/master/react.md#route )
