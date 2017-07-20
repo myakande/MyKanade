@@ -1,3 +1,4 @@
+[toc]
 ## MyKanade的react学习笔记      
 ### JSX
 JSX 是 JavaScript 语言的一种语法扩展，长得像 HTML，但并不是 HTML  
