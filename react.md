@@ -116,7 +116,7 @@ React 具有强大的组合模型，建议使用组合而不是继承来复用�
 <Route path="/other" component={Other}/>
 ```
 可嵌套
-**history属性**
+**history属性**  
 如果设为hashHistory，路由将通过URL的hash部分切换，URL的形式类似`example.com/#/some/path。`  
 如果设为browserHistory，浏览器的路由就不再通过Hash完成了，而显示正常的路径`example.com/some/path`，背后调用的是浏览器的History API。  
 createMemoryHistory主要用于服务器渲染。它创建一个内存中的history对象，不与浏览器URL互动。  
