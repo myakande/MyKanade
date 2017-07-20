@@ -110,12 +110,12 @@ React 具有强大的组合模型，建议使用组合而不是继承来复用�
 组件化可以帮助我们解决前端结构的复用性问题，整个页面可以由这样的不同的组件组合、嵌套构成。
 
 ### Route
+可嵌套  
 ```
 <Route path="/" component={App}>
 <Route path="/about" component={About}/>
 <Route path="/other" component={Other}/>
 ```
-可嵌套
 **history属性**  
 如果设为hashHistory，路由将通过URL的hash部分切换，URL的形式类似`example.com/#/some/path。`  
 如果设为browserHistory，浏览器的路由就不再通过Hash完成了，而显示正常的路径`example.com/some/path`，背后调用的是浏览器的History API。  
