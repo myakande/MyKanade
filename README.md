@@ -1,5 +1,7 @@
 ## MyKanade的react学习笔记      
 ### JSX
+JSX 是 JavaScript 语言的一种语法扩展，长得像 HTML，但并不是 HTML  
+ReactDOM 可以帮助我们把 React 组件渲染到页面上去  
 {js表达式}  
 `<div tabIndex="xxx"></div>;` 引号定义字符串属性  
 `<img src={xxx}></img>;` 大括号定义js表达式属性 外面不能有引号  
@@ -105,3 +107,16 @@ class NameForm extends React.Component {
 
 ### 组合vs继承
 React 具有强大的组合模型，建议使用组合而不是继承来复用组件之间的代码。
+组件化可以帮助我们解决前端结构的复用性问题，整个页面可以由这样的不同的组件组合、嵌套构成。
+
+### Route
+```
+<Route path="/" component={App}>
+<Route path="/about" component={About}/>
+<Route path="/other" component={Other}/>
+```
+可嵌套
+**history属性**
+如果设为hashHistory，路由将通过URL的hash部分切换，URL的形式类似`example.com/#/some/path。`  
+如果设为browserHistory，浏览器的路由就不再通过Hash完成了，而显示正常的路径`example.com/some/path`，背后调用的是浏览器的History API。  
+createMemoryHistory主要用于服务器渲染。它创建一个内存中的history对象，不与浏览器URL互动。  
